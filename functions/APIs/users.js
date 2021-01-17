@@ -1,10 +1,9 @@
-// users.js
-
 const { admin, db } = require('../util/admin');
 const config = require('../util/config');
 
 const firebase = require('firebase');
 
+console.log(admin, db, config, firebase)
 firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require('../util/validators');
@@ -30,10 +29,15 @@ exports.loginUser = (request, response) => {
         })
         .catch((error) => {
             console.error(error);
-            return response.status(403).json({ general: 'wrong credentials, please try again'});
+            return response.status(403).json(
+                { 
+                    general: 'wrong credentials, please try again' 
+                }
+            );
         })
 };
 
+// Sign up
 exports.signUpUser = (request, response) => {
     const newUser = {
         firstName: request.body.firstName,
@@ -98,8 +102,6 @@ exports.signUpUser = (request, response) => {
 			}
 		});
 }
-
-
 
 deleteImage = (imageName) => {
     const bucket = admin.storage().bucket();
@@ -179,7 +181,7 @@ exports.getUserDetail = (request, response) => {
 			console.error(error);
 			return response.status(500).json({ error: error.code });
 		});
-};
+}
 
 exports.updateUserDetails = (request, response) => {
     let document = db.collection('users').doc(`${request.user.username}`);
