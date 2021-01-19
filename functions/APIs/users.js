@@ -3,7 +3,6 @@ const config = require('../util/config');
 
 const firebase = require('firebase');
 
-console.log(admin, db, config, firebase)
 firebase.initializeApp(config);
 
 const { validateLoginData, validateSignUpData } = require('../util/validators');
