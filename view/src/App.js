@@ -4,7 +4,6 @@ import login from './pages/login';
 import signup from './pages/signup';
 import home from './pages/home';
 
-
 function App() {
   return (
     <div>
