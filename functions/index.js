@@ -4,7 +4,8 @@ const app = require('express')();
 const auth = require('./util/auth');
 const cors = require('cors');
 
-app.use(cors({ origin: true }));
+app.use(cors());
+app.options('*', cors())
 
 const {
     getAllTodos,
@@ -35,5 +36,6 @@ app.post('/signup', signUpUser);
 app.post('/user/image', auth ,uploadProfilePhoto);
 app.post('/user', auth ,updateUserDetails);
 app.get('/user', auth, getUserDetail);
+
 
 exports.api = functions.https.onRequest(app);
